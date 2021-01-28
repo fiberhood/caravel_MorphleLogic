@@ -1,0 +1,93 @@
+// SPDX-FileCopyrightText: Copyright 2020 Jecel Mattos de Assumpcao Jr
+// 
+// SPDX-License-Identifier: Apache-2.0 
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     https://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// test vectors for user_proj_pnet with an array (4x4) of 8x8 ycell
+// block connected to the rest of the Caravel chip using multiplexer
+// to connect one block at a time to the logic analyzer pins.
+// The verilog test bench that reads this file is test006upnet.v
+//
+// each vector in the the format of 1+2+2+2+8+8 = 23 hex digits
+//
+// The first groups are the values to be sent from Caravel's
+// logic analyzer to the block while the last group is the
+// result that the block is expected to send to the logic analyzer.
+//
+// The first digit has four independent bits:
+//   bit 3: must be zero for outputs to be tested against expected values
+//   bit 2: reset - when 1 stops the selected block from running
+//   bit 1: confclk - on its rising edge the input data is shifted down
+//                    into the yellow cells
+//   bit 0: rconfclk - on its rising edge the input data is loaded as the
+//                     configuration for the pseudo red cells
+//
+// The second group, though it includes two digits, can only have the
+// values 0 or 1. When 0, none of the blocks are selected.
+//
+// The third group is the row address. In the current project only values
+// 0 to 3 are valid even though the address is 8 bits
+//
+// The fourth group is the column address. In the current project only
+// values 0 to 3 are valid even though the address is 8 bits
+//
+// The fifth group is the data to be sent to the 8 cells in the selected
+// block. Depending on the value of the first group this can be configuration
+// bits to be shifted into the yellow cells, configuration bits to be
+// directly loaded into the pseudo red cells, raw bits to be placed in the
+// uout and dout pins of the pseudo red cells or the inputs to the pseudo
+// red cells (only 0 (empty), 1 (value 0) or 2 (value 1) should be used)
+//
+// The sixth group is the data coming from the 8 cells in the selcted block.
+// They will always reflect the values in the uin and din pins
+//
+// example configuration:
+// .101Y||.........
+// .0+0-YN.........
+// .+10-Y..........
+// ................
+// ................
+// ................
+// ................
+// ................
+// ................
+// ................
+// ................
+// ................
+// ................
+// ................
+// ................
+// ................
+//
+// wide yellow cell configuration:
+//    0: .
+//    F: +
+//    3: -
+//    C: |
+//    E: 1
+//    D: 0
+//    B: Y
+//    7: N
+//
+// pseudo red cell configuration:
+//    1: .
+//    2: |
+//    4: raw
+//    8: i/o
+//
+0_00_00_00_00000000_00000000
+0_01_00_00_00000000_00000000   // select 0,0
+0_00_00_00_00000000_00000000
+0_00_01_02_00000000_00000000
+0_01_01_02_00000000_00000000   // select 2,1
