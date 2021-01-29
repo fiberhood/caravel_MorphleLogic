@@ -25,18 +25,19 @@ set ::env(DESIGN_NAME) user_project_wrapper
 ## Source Verilog Files
 set ::env(VERILOG_FILES) "\
 	$script_dir/../../verilog/rtl/defines.v \
-        $script_dir/../../verilog/morphle/yblock.v \
-        $script_dir/../../verilog/morphle/user_proj_block.v \
+        $script_dir/../../verilog/morphle/wide_yblock.v \
+	$script_dir/../../verilog/morphle/pnet.v \
+        $script_dir/../../verilog/morphle/user_proj_pnet.v \
 	$script_dir/../../verilog/rtl/user_project_wrapper.v"
 
 set ::env(VERILOG_FILES_BLACKBOX) "\
-        $script_dir/../../verilog/morphle/ycell.v"
+        $script_dir/../../verilog/morphle/wide_ycell.v"
 
 set ::env(EXTRA_LEFS) "\
-        $script_dir/../../lef/morphle_ycell.lef"
+        $script_dir/../../lef/morphle_wycell.lef"
 
 set ::env(EXTRA_GDS_FILES) "\
-        $script_dir/../../gds/morphle_ycell.gds"
+        $script_dir/../../gds/morphle_wycell.gds"
 
 ## Clock configurations
 set ::env(CLOCK_PORT) "wb_clk_i"
@@ -83,8 +84,8 @@ set ::env(FP_PDN_VWIDTH) 3
 set ::env(FP_PDN_HWIDTH) 3
 set ::env(FP_PDN_VOFFSET) 0
 set ::env(FP_PDN_HOFFSET) $::env(FP_PDN_VOFFSET)
-set ::env(FP_PDN_VPITCH) 90
-set ::env(FP_PDN_HPITCH) $::env(FP_PDN_VPITCH)
+set ::env(FP_PDN_VPITCH) 180
+set ::env(FP_PDN_HPITCH) 90
 set ::env(FP_PDN_VSPACING) [expr 5*$::env(FP_PDN_CORE_RING_VWIDTH)]
 set ::env(FP_PDN_HSPACING) [expr 5*$::env(FP_PDN_CORE_RING_HWIDTH)]
 

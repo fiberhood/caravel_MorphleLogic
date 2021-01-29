@@ -68,8 +68,8 @@ macros_upw:
 		done \
 	done
 
-.PHONY: macros_exp1
-macros_exp1:
+.PHONY: macros_pnet
+macros_pnet:
 	@echo
 	@echo "      creating new macro_placement.cfg file for user_project_wrapper"
 	@echo
@@ -78,7 +78,7 @@ macros_exp1:
 	    for c in 0 1 2 3; do \
 		  for x in 0 1 2 3 4 5 6 7; do \
 		    for y in 0 1 2 3 4 5 6 7; do \
-		echo "mprj.blk.line\["$$r"\].pr.col\["$$c"\].pc.blk.column\["$$x"\].row\["$$y"\].yc "$$(printf %.3f $$((230000+72000*$$x+576000*$$c))e-3)" "$$(printf %.3f $$((175000+90000*$$y+810000*$$r))e-3)" S" >> ../openlane/exp1/macro_placement.cfg; \
+		echo "mprj.blk.line\["$$r"\].pr.col\["$$c"\].pc.blk.column\["$$x"\].row\["$$y"\].yc "$$(printf %.3f $$((230000+72000*$$x+576000*$$c))e-3)" "$$(printf %.3f $$((175000+90000*$$y+810000*$$r))e-3)" S" >> ../openlane/user_project_wrapper/macro_placement.cfg; \
 		    done \
 		  done \
 		done \
