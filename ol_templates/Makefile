@@ -73,7 +73,7 @@ macros_pnet:
 	@echo
 	@echo "      creating new macro_placement.cfg file for user_project_wrapper"
 	@echo
-	@echo -n >../openlane/exp1/macro_placement.cfg
+	@echo -n >../openlane/user_project_wrapper/macro_placement.cfg
 	@for r in 0 1 2 3; do \
 	    for c in 0 1 2 3; do \
 		  for x in 0 1 2 3 4 5 6 7; do \
